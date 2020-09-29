@@ -25,6 +25,8 @@ services:
       - micronaut-demo
     depends_on:
       - postgresql
+    environment:
+      - JDBC_URL=jdbc:postgresql://docker_postgresql_1:5432/postgres
 
   frontend:
     build: ../fe
