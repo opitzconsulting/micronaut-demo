@@ -27,7 +27,6 @@ dependencies {
     compile 'io.micronaut:micronaut-http-server-netty:2.0.3'
     compile group: 'io.micronaut', name: 'micronaut-http-client', version: '2.0.3'
 
-    //compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
     implementation("io.micronaut:micronaut-runtime")
     implementation("javax.annotation:javax.annotation-api")
@@ -35,6 +34,7 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("ch.qos.logback:logback-classic")
+    //sonraki zeile yi sil dene
     runtimeOnly("com.h2database:h2")
     testAnnotationProcessor(enforcedPlatform("io.micronaut:micronaut-bom:2.0.3"))
     testAnnotationProcessor("io.micronaut:micronaut-inject-java")
@@ -46,12 +46,13 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.2.0'
     testRuntime "org.junit.jupiter:junit-jupiter-engine:5.1.0"
 
-
     testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
     implementation 'org.mybatis:mybatis:3.4.6'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8.jre7'
     compile group: 'org.testcontainers', name: 'postgresql', version: '1.12.5'
     compile group: 'com.sun.istack', name: 'istack-commons-runtime', version: '2.2'
+    runtime "io.micronaut:micronaut-discovery-client"
+
 
 }
 //yeni ekledim

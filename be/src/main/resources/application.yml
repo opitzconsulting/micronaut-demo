@@ -3,22 +3,20 @@ micronaut:
     name: micronaut-demo
   server:
     port: 7000
-    server:
-      cors:
-        enabled: true
-        configurations:
-          web:
-            allowedOrigins:
-              - http://localhost:7080
-            allowedMethods:
-              - "GET"
-              - "POST"
-              - "DELETE"
-              - "PUT"
-              - "HEAD"
-              - "OPTIONS"
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - http://localhost:7080
+          allowedMethods:
+            - "GET"
+            - "POST"
+            - "DELETE"
+            - "PUT"
+            - "HEAD"
+            - "OPTIONS"
 
-#Access SQL database with JPA and Hibernate
 datasources:
   default:
     url: ${JDBC_URL:`jdbc:postgresql://localhost:5432/postgres`}

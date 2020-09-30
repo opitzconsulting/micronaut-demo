@@ -1,118 +1,48 @@
 package com.opitzconsulting.demo.test.micronaut;
 
-import com.opitzconsulting.demo.micronaut.TechnologyController;
-import com.opitzconsulting.demo.micronaut.genre.TechnologyRepository;
 import com.opitzconsulting.demo.micronaut.model.Technology;
+import io.micronaut.context.ApplicationContext;
+import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.client.RxHttpClient;
-import io.micronaut.http.client.annotation.Client;
+import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
-import io.micronaut.test.annotation.MockBean;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.inject.Inject;
+import java.net.http.HttpClient;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @MicronautTest
 public class TechnologyControllerTest {
-    @Inject
-    TechnologyController technologyController;
-    @Inject
-    Technology technology;
-    @Inject
-    TechnologyRepository technologyRepository;
-    @Inject
-    ObjectMapper mapper;
 
+    private static EmbeddedServer server;
+    private static HttpClient client;
 
-    Technology technology1;
-    Technology technology2;
-    String tech1JsonString;
-    String tech2JsonString;
-    String requestUri = "/technologies";
-
-    @Inject
-    @Client("/")
-    RxHttpClient client;
-
-    @Test
-    public void testHello() {
-        HttpRequest<String> request = HttpRequest.GET("/");
-        String body = client.toBlocking().retrieve(request);
-
-        assertNotNull(body);
-        assertEquals("welcome to micronaut", body);
+    @BeforeClass
+    public static void setupServer() {
+        server = ApplicationContext.run(EmbeddedServer.class);
+        client = server .getApplicationContext() .createBean(HttpClient.class, server.getURL());
     }
 
-
-    @Before
-    void setup(){
-        technology1=new Technology(1, "tech1",  "description",1,
-                1, 1, "url","tags");
-        technology2=new Technology(2, "tech2",  "description",1,
-                1, 1, "url","tags");
-        try {
-            tech1JsonString=mapper.writeValueAsString(technology1);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+    @AfterClass
+    public static void stopServer() {
+        if (server != null) {
+            server.stop();
         }
-        try {
-            tech2JsonString=mapper.writeValueAsString(technology2);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        if (client != null) {
+            client.stop();
         }
-
-    }
-    @Test
-    void findAllReturnsAllTechnologies(){
-        //given
-        // Mockito.when(technologyRepository.getTechnologies()).thenReturn( [technology1,technology2] );
-        //Technology[] techArray= {technology1, technology2};
-        //String response= Arrays.toString(techArray);
-        //when
-        // Properties properties = mock(Properties.class);
-        //
-        // then
-        //        //Mockito.verify(technologyRepository).getTechnologies();
-
-        when(technologyRepository.getTechnologies()).thenReturn((List<Technology>) Stream.of(new Technology(1, "tech1",  "description",1,
-                1, 1, "url","tags"),new Technology(2, "tech2",  "description",1,
-                1, 1, "url","tags")));
-        assertEquals(2,technologyController.getTechnologies().size());
-
     }
 
     @Test
-    void getTechnologyReturnsTechnology(){
-
+    public void retrieveBooks() {
+        HttpRequest request = HttpRequest.GET("/technologies");
+        List<Technology> technologies = client.toBlocking().retrieve(request, Argument.of(List.class, Technology.class));
+        assertNotNull(technologies);
+        assertEquals(1, technologies.size());
     }
-    @Test
-    void deleteTechnology(){
-
-    }
-    @Test
-    void updateTechnology(){
-
-    }
-    @Test
-    void updateTechnologyFailsIfCustomerNotExist(){
-
-    }
-
-
-
-    @MockBean(TechnologyRepository.class)
-    TechnologyRepository technologyRepository() {
-        return mock(TechnologyRepository.class);
-    }
-
 }
