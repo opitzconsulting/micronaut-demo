@@ -44,7 +44,7 @@ dependencies {
     implementation 'org.mybatis:mybatis:3.4.6'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8.jre7'
     compile group: 'org.testcontainers', name: 'postgresql', version: '1.12.5'
-    compile group: 'com.sun.istack', name: 'istack-commons-runtime', version: '2.2'
+
 
 
 }
