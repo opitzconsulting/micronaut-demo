@@ -24,10 +24,10 @@ public class TechnologyController {
         this.technologyRepository = technologyRepository;
     }
 
-    @Get
+    @Get("/message")
     @Produces(MediaType.TEXT_PLAIN)
     public String message() {
-        return "welcome to micronaut";
+        return "Hello World using micronaut";
     }
 
     @Get("/technologies")
