@@ -3,6 +3,5 @@
 be/.gradle
 
 be/build
-be/gradle
 be/out
 be/docker

@@ -62,7 +62,6 @@ public class TechnologyController {
 
     @Delete("/technologies/{id}")
     public void removeTechnology(@PathVariable int id) {
-
         technologyRepository.removeTechnology(id);
     }
 
