@@ -19,6 +19,7 @@ services:
   backend:
     build: ../be
     image: mfeval-be
+    command: sh -c '/usr/bin/wait_for postgresql:5432 -- java -jar be-0.1-all.jar'
     ports:
       - 7000:7000
     networks:
@@ -26,7 +27,7 @@ services:
     depends_on:
       - postgresql
     environment:
-      - JDBC_URL=jdbc:postgresql://docker_postgresql_1:5432/postgres
+      - JDBC_URL=jdbc:postgresql://postgresql:5432/postgres
 
   frontend:
     build: ../fe
@@ -35,9 +36,6 @@ services:
       - 7080:8080
     networks:
       - micronaut-demo
-    depends_on:
-      - backend
-
 volumes:
   postgresql_data:
 

@@ -4,14 +4,14 @@ import io.micronaut.core.annotation.Introspected;
 
 
 @Introspected
-public class Tags {
+public class Tag {
     private Integer id;
     private String tag;
 
-    public Tags() {
+    public Tag() {
     }
 
-    public Tags(String tag) {
+    public Tag(String tag) {
         this.tag = tag;
     }
 
@@ -33,7 +33,7 @@ public class Tags {
 
     @Override
     public String toString() {
-        return "Tags{" +
+        return "Tag{" +
                 "id=" + id + "tag=" + tag +'}';
     }
 

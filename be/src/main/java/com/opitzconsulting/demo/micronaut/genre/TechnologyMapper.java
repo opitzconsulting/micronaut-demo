@@ -1,7 +1,5 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
-
-
 import com.opitzconsulting.demo.micronaut.model.Technology;
 import org.apache.ibatis.annotations.*;
 
