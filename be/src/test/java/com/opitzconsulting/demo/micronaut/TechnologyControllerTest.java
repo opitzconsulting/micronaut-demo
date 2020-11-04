@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class TechnologyControllerTest {
 
@@ -15,9 +14,8 @@ class TechnologyControllerTest {
     @Test
     void message() {
         String request = technologyController.message();
-
-        assertNotNull(request);
-        assertEquals("Hello World using micronaut", request);
+        assertThat(request).isNotNull();
+        assertThat(request).isEqualTo("Hello World using micronaut");
 
     }
     @BeforeAll

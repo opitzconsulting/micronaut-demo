@@ -1,13 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
-
-import com.sun.istack.NotNull;
 import com.opitzconsulting.demo.micronaut.model.Technology;
-
 import javax.inject.Singleton;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.constraints.NotNull;
 
 @Singleton
 public class TechnologyRepositoryImpl implements TechnologyRepository {

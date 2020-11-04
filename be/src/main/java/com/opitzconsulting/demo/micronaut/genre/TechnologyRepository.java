@@ -1,11 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 import com.opitzconsulting.demo.micronaut.model.Technology;
-import com.sun.istack.NotNull;
 
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.constraints.NotNull;
 
 //Create an interface to define the high level operations exposed to the application:
 public interface TechnologyRepository {

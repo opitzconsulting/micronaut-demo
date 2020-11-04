@@ -23,9 +23,8 @@ datasources:
     driverClassName: org.postgresql.Driver
     username: ${JDBC_USER:postgres}
     password: ${JDBC_PASSWORD:kineKine41!}
-jpa.default.properties.hibernate.hbm2ddl.auto: update
 
 flyway:
   datasources:
     default:
-      locations: classpath:databasemigrations
+      enabled: true

@@ -6,7 +6,6 @@ import io.micronaut.core.annotation.Introspected;
 @Introspected
 public class Technology {
 
-
     private Integer id;
 
     private  String name;
