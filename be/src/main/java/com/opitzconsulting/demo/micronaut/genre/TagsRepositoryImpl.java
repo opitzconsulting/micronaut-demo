@@ -1,13 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
-import com.opitzconsulting.demo.micronaut.model.Tag;
-import com.opitzconsulting.demo.micronaut.model.Technology;
+import com.opitzconsulting.demo.micronaut.model.Tags;
 
 import javax.inject.Singleton;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.constraints.NotNull;
 
 @Singleton
 public class TagsRepositoryImpl implements TagsRepository{
@@ -18,19 +16,21 @@ public class TagsRepositoryImpl implements TagsRepository{
     }
 
     @Override
-    public Optional<Tag> getTag(@NotNull int id) {
+    public Optional<Tags> getTag(@NotNull int id) {
         return Optional.ofNullable(tagMapper.getTag(id));
     }
 
     @Override
-    public Tag insertTag( String tag) {
-        Tag tags1= new Tag(tag);
+    public Tags insertTag(String tag) {
+        Tags tags1= new Tags(tag);
         tagMapper.insertTag(tags1);
         return tags1;
     }
 
-
-
+    @Override
+    public List<Tags> getTags() {
+        return tagMapper.getTags();
+    }
 
 
 }

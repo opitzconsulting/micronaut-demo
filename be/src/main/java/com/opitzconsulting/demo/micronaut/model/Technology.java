@@ -20,11 +20,11 @@ public class Technology {
 
     private String url;
 
-    private String tags ;
+    //string array machen !! als String List zurückgeben
+    private String tags;
 
 
     protected Technology(){
-
     }
 
     public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, String tags){

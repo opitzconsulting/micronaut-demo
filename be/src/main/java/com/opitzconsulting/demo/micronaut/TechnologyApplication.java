@@ -1,5 +1,4 @@
 package com.opitzconsulting.demo.micronaut;
-
 import io.micronaut.runtime.Micronaut;
 
 public class TechnologyApplication {

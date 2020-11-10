@@ -2,16 +2,14 @@ package com.opitzconsulting.demo.micronaut;
 
 import com.opitzconsulting.demo.micronaut.genre.TagInsertCommand;
 import com.opitzconsulting.demo.micronaut.genre.TagsRepository;
-import com.opitzconsulting.demo.micronaut.model.Tag;
+import com.opitzconsulting.demo.micronaut.model.Tags;
 import com.opitzconsulting.demo.micronaut.model.Technology;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.PathVariable;
-import io.micronaut.http.annotation.Post;
-import java.net.URI;
+import io.micronaut.http.annotation.*;
+
 import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
 
 @Controller
 public class TagsController {
@@ -27,16 +25,21 @@ public class TagsController {
         return "welcome to micronaut's controller";
     }
 
+    @Get("/tags")
+    public List<Tags> getAllTags() {
+        return tagsRepository.getTags();
+    }
+
     @Get("/tags/{id}")
-    public Tag getTag(@PathVariable int id) {
+    public Tags getTag(@PathVariable int id) {
         return tagsRepository.getTag(id).orElse(null);
     }
 
 
     @Post("/tags")
-    public HttpResponse insertTag(@Body @Valid TagInsertCommand tagInsertCommand) {
+    public HttpResponse insertTags(@Body @Valid TagInsertCommand tagInsertCommand) {
 
-        Tag tag1=tagsRepository.insertTag(tagInsertCommand.getTag());
+        Tags tag1=tagsRepository.insertTag(tagInsertCommand.getTag());
         return HttpResponse
                 .created(tag1)
                 .headers(headers -> headers.location(location(tag1.getId())));

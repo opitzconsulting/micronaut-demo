@@ -13,8 +13,6 @@ public interface TechnologyMapper {
     List<Technology> getTechnologies();
 
     //returns the technology where id=id
-
-
     @Select("SELECT * FROM technologies WHERE id=#{id}")
     Technology getTechnology(int id) ;
 

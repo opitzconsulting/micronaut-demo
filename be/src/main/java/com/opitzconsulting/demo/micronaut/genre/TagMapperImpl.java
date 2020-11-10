@@ -1,10 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
-import com.opitzconsulting.demo.micronaut.model.Tag;
+import com.opitzconsulting.demo.micronaut.model.Tags;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.inject.Singleton;
+import java.util.List;
 
 @Singleton
 public class TagMapperImpl implements TagMapper{
@@ -19,7 +20,7 @@ public class TagMapperImpl implements TagMapper{
     }
 
     @Override
-    public Tag getTag(int id) {
+    public Tags getTag(int id) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             return getTagMapper(sqlSession).getTag(id);
 
@@ -27,7 +28,7 @@ public class TagMapperImpl implements TagMapper{
     }
 
     @Override
-    public void insertTag(Tag tag) {
+    public void insertTag(Tags tag) {
         // Use try-with-resources to automatically close the sql session.
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             getTagMapper(sqlSession).insertTag(tag);
@@ -35,5 +36,12 @@ public class TagMapperImpl implements TagMapper{
             sqlSession.commit();
         }
 
+    }
+
+    @Override
+    public List<Tags> getTags() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            return getTagMapper(sqlSession).getTags();
+        }
     }
 }

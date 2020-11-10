@@ -24,7 +24,9 @@ datasources:
     username: ${JDBC_USER:postgres}
     password: ${JDBC_PASSWORD:kineKine41!}
 
+
 flyway:
-  datasources:
-    default:
-      enabled: true
+  enabled: true
+  schemas: public
+  locations: classpath:/db/migration
+  baselineOnMigrate: true

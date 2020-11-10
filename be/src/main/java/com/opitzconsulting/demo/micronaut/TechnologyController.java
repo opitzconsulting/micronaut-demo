@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller("/")
 public class TechnologyController {
-    
+
     protected final TechnologyRepository technologyRepository;
 
     public TechnologyController(TechnologyRepository technologyRepository) {

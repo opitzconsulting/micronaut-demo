@@ -1,0 +1,7 @@
+was habe ich gemacht;
+1. überall get tags/ methoden hinzugefügt
+
+
+was soll ich machen':
+1.teste ob du gradle properities brauchst
+2.fe ile be deki bilgileri kiyaslamethod isimleri vs vs

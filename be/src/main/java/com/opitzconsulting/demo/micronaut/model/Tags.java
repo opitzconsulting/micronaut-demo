@@ -4,16 +4,22 @@ import io.micronaut.core.annotation.Introspected;
 
 
 @Introspected
-public class Tag {
+public class Tags {
     private Integer id;
     private String tag;
 
-    public Tag() {
+    public Tags() {
     }
 
-    public Tag(String tag) {
+    public Tags(String tag) {
         this.tag = tag;
     }
+
+    public Tags(Integer id, String tag) {
+        this.id = id;
+        this.tag = tag;
+    }
+
 
     public Integer getId() {
         return id;
