@@ -32,7 +32,7 @@ public interface TechnologyMapper {
             "relevance=#{relevance}, complexity=#{complexity}, url=#{url}, tags=#{tags} WHERE id=#{id}")
     void update(@Param("id") Integer id, @Param("name") String name, @Param("description") String description,
                 @Param("relevance") Integer relevance, @Param("recommendation")Integer recommendation,
-                @Param("complexity")Integer complexity, @Param("url") String url,@Param("tags") String tags);
+                @Param("complexity")Integer complexity, @Param("url") String url,@Param("tags") List<String> tags);
 
 
 }

@@ -1,7 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.core.annotation.Introspected;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Introspected
 public class TechnologyInsertCommand {
@@ -18,20 +22,23 @@ public class TechnologyInsertCommand {
 
     private String url;
 
-    private String tags;
-
+    private List<String> tags;
 
     public TechnologyInsertCommand(){
     }
 
-    public TechnologyInsertCommand( String name, String description, Integer relevance,
-                                    Integer recommendation, Integer complexity, String url, String tags) {
+    public TechnologyInsertCommand(String name, String description, Integer relevance,
+                                   Integer recommendation, Integer complexity, String url, List<String> tags) {
         this.name = name;
         this.description = description;
         this.relevance = relevance;
         this.recommendation = recommendation;
         this.complexity = complexity;
         this.url = url;
+        this.tags = tags;
+    }
+
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
@@ -83,11 +90,11 @@ public class TechnologyInsertCommand {
         this.url = url;
     }
 
-    public String getTags() {
+    public List<String> getTags() {
+        ObjectMapper objectMapper=new ObjectMapper();
+        tags=objectMapper.convertValue(tags, ArrayList.class);
         return tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
+
 }

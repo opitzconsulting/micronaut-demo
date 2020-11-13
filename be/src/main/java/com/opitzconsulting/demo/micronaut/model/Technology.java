@@ -2,6 +2,8 @@ package com.opitzconsulting.demo.micronaut.model;
 
 import io.micronaut.core.annotation.Introspected;
 
+import java.util.List;
+
 //Domain
 @Introspected
 public class Technology {
@@ -21,13 +23,10 @@ public class Technology {
     private String url;
 
     //string array machen !! als String List zurückgeben
-    private String tags;
+    private List<String> tags;
 
 
-    protected Technology(){
-    }
-
-    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, String tags){
+    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, List<String> tags){
         this.name = name;
         this.description = description;
         this.recommendation = recommendation;
@@ -37,10 +36,10 @@ public class Technology {
         this.tags = tags;
     }
 
-    public Technology(Integer id, String nameOfTechnology, String description, Integer recommendation, Integer relevance, Integer complexity, String url, String tags) {
+    public Technology(Integer id, String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, List<String> tags) {
         super();
         this.id = id;
-        this.name = nameOfTechnology;
+        this.name = name;
         this.description = description;
         this.recommendation = recommendation;
         this.relevance = relevance;
@@ -106,15 +105,13 @@ public class Technology {
         this.url = url;
     }
 
-    public String getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
-
-
 
     @Override
     public String toString() {
