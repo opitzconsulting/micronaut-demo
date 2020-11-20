@@ -30,12 +30,10 @@ export class TechnologyDetailComponent implements OnInit {
     this.router.navigate([ '/technology', this.technologyId, 'bearbeiten']);
   }
 
-  // delete Technology
   onDelete(technology: Technology): void {
     console.log(technology);
     this.technologyService.deleteTechnology(technology).subscribe(() =>
       this.router.navigate(['/technology']));
   }
-
 
 }

@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
 
   private searchSubject: Subject<string> = new Subject();
   private searchValue: string;
-  test: string;
 
   constructor(private technologyService: TechnologyService, public router: Router) { }
 
@@ -33,14 +32,5 @@ export class HeaderComponent implements OnInit {
       this.technologyService.changeSearch(searchValue);
     });
   }
-
-  // testBe() {
-  //   this.technologyService.getDesc().subscribe(
-  //     data => {
-  //       this.test = data;
-  //       console.log(data);
-  //     }
-  //   );
-  // }
 
 }

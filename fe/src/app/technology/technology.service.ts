@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Technology} from '../technology.model';
-import {Tag} from '../tag.model';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -28,10 +27,8 @@ export class TechnologyService {
   }
 
   getTechnologies(): Observable<Technology[]> {
-    // TODO sends the message before updateing...
     const url = `${this.baseUrl}/technologies`;
     return this.http.get<Technology[]>(url).pipe(
-      // TODO tap with different log fucntion
       tap(_ => console.log('getTechnologies')),
       catchError(this.handleError<Technology[]>('getTechnologies', []))
     );
@@ -41,7 +38,6 @@ export class TechnologyService {
   getTechnology(id: number): Observable<Technology> {
     const url = `${this.baseUrl}/technologies/${id}`;
     return this.http.get<Technology>(url).pipe(
-      // TODO tap with log function
       tap((newTechnology: Technology) => console.log(`get current technology ${newTechnology.id}`)),
       catchError(this.handleError<Technology>(`getTechnology id=${id}`))
     );
@@ -62,7 +58,6 @@ export class TechnologyService {
     const url = `${this.baseUrl}/technologies`;
     return this.http.post<Technology>(url, technology, this.httpOptions)
       .pipe(
-        // tap((newTechnology: Technology) => console.log(`add new technology=${newTechnology.id}`)), //new TEch error
         catchError(this.handleError<Technology>('addTechnology'))
       );
   }
@@ -76,36 +71,6 @@ export class TechnologyService {
       );
   }
 
-
-  // TODO: create Technology Tag join relation. At the moment this is really bad
-  getTags(): Observable<Tag[]> {
-    const url = `${this.baseUrl}/tags`;
-    return this.http.get<Tag[]>(url).pipe(
-      // TODO tap with different log fucntion
-      tap(_ => console.log('getTags')),
-      catchError(this.handleError<Tag[]>('getTags', []))
-    );
-  }
-
-  // Push new tag to server
-  addTag(tag: Tag): Observable<Tag> {
-    // console.log(tag);
-    const url = `${this.baseUrl}/tags`;
-    return this.http.post<Tag>(url, tag, this.httpOptions)
-      .pipe(
-        // tap((newTag: Tag) => console.log(`add new tag=${newTag.id}`)),
-        catchError(this.handleError<Tag>('addTag'))
-      );
-  }
-
-  // simple Test
-  // getDesc() {
-  //   const url = 'http://mfeval-javalin-mfeval-test.apps.ods.opitz-consulting.com/desc';
-  //   return this.http.get<string>(url).pipe(
-  //     tap((test: string) => console.log(`get test value from desc ${test}`))
-  //   );
-  // }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -115,11 +80,9 @@ export class TechnologyService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      // TODO: create log operation!
+      // TODO: create log operation
       // this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.

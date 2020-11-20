@@ -8,7 +8,6 @@ import { TechnologyListComponent } from './technology/technology-list/technology
 import { TechnologyItemComponent } from './technology/technology-list/technology-item/technology-item.component';
 import { TechnologyDetailComponent } from './technology/technology-detail/technology-detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TechnologyStartComponent } from './technology/technology-start.component';
 import { TechnologyEditComponent } from './technology/technology-edit/technology-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TechnologyService} from './technology/technology.service';
@@ -24,7 +23,6 @@ import { HttpClientModule } from '@angular/common/http';
     TechnologyListComponent,
     TechnologyItemComponent,
     TechnologyDetailComponent,
-    TechnologyStartComponent,
     TechnologyEditComponent,
     SearchPipePipe,
     TruncatePipe,

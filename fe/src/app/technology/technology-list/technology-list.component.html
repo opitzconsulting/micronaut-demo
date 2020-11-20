@@ -20,48 +20,6 @@
         </b>
       </h5>
       <hr>
-      <div class="form-group row">
-        <div class="col">
-          <div class="input-group">
-            <input type="text" class="form-control" #tagName
-                   (keyup.enter)="addTag(tagName.value)" [ngbTypeahead]="searchTag"
-                   (focus)="focus$.next($event.target.value)"
-                   (click)="click$.next($event.target.value)"
-                   #instance="ngbTypeahead"
-            >
-            <span class="input-group-append">
-             <button
-               type="button"
-               class="btn btn-primary"
-               (click)="addTag(tagName.value)">+</button>
-            </span>
-          </div>
-        </div>
-      </div>
-      <p>
-        <ngb-alert *ngIf="selTag?.invalid" [dismissible]="false" type="danger">
-          <strong>{{selTag?.value}}</strong> ist kein gültiger Tag!
-        </ngb-alert>
-      </p>
-      <div formArrayName="filTags" class="bottom-buffer">
-        <div *ngFor="let tag of filTags.controls; let i=index">
-          <!-- The repeated tag template -->
-          <div class="row">
-            <div class="col">
-              <div class="input-group">
-                <div class="input-group ">
-                  <input class="form-control py-2 border-right-0" [formControlName]="i">
-                  <span class="input-group-append">
-                    <div class="input-group-text">
-                      <i (click)="removeFilterTag(i)" class="fa fa-times deleteTag"></i>
-                    </div>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="row bottom-buffer">
         <div class="col form-group">
           <label for="relevance">Minimale Relevanz</label>

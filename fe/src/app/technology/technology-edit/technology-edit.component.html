@@ -115,46 +115,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <label for="tags" class="labelTag">Tags</label>
-          <ul *ngFor="let tag of technologyForm.get('tags')['controls']; let i = index" class="list-group tagList" formArrayName="tags" id="tags">
-            <div formGroupName="{{ i }}">
-              <div class="col">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="tag"
-                   >
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-danger" (click)="removeTagControl(i)">X</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <hr>
-          </ul>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <div class="col-sm-4 col-sm-offset-4">
-          <div class="input-group">
-            <input type="text"
-                   [maxLength]="20"
-                   class="form-control" #tagName
-                   size="5"
-                   (keyup.enter)="onAddTagControl(tagName.value)">
-            <span class="input-group-append">
-               <button
-                 type="button"
-                 class="btn btn-primary"
-                 (click)="onAddTagControl(tagName.value)">+</button>
-            </span>
-          </div>
-        </div>
-      </div>
       <hr>
       <div class="row bottom-buffer">
         <div class="col text-left">
@@ -172,5 +133,3 @@
     </form>
   </div>
 </div>
-
-<!-- [disabled]="!technologyForm.valid"-->

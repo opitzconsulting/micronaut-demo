@@ -6,5 +6,4 @@ export class Technology {
   recommendation: number;
   complexity: number;
   url: string;
-  tags: string[];
 }

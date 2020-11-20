@@ -1,9 +1,8 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TechnologyService} from '../technology.service';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Technology} from '../../technology.model';
-import {Tag} from '../../tag.model';
 
 @Component({
   selector: 'app-technology-edit',
@@ -18,8 +17,6 @@ export class TechnologyEditComponent implements OnInit {
   private isNew = true;
   private technology: Technology;
 
-  @ViewChild('tagName', {static: false}) curTag: ElementRef; // nicht schön
-
   constructor(private technologyService: TechnologyService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
@@ -31,7 +28,6 @@ export class TechnologyEditComponent implements OnInit {
     let technologyRecommendation = null;
     let technologyComplexity = null;
     let technologyUrl = null;
-    const technologyTags = new FormArray([]);
 
     // TODO keine schöne Lösung => redundanter Code...
     this.activatedRoute.params.subscribe(
@@ -40,19 +36,9 @@ export class TechnologyEditComponent implements OnInit {
             this.isNew = false;
             this.technologyIndex = +params[`id`];
             console.log(this.technologyIndex);
-            // this.getEditTechnology();
             this.technologyService.getTechnology(this.technologyIndex)
               .subscribe(technology =>  {
                 this.technology = technology;
-                if (this.technology.hasOwnProperty('tags')) {
-                  for (const tag of this.technology.tags) {
-                    technologyTags.push(
-                      new FormGroup( {
-                        tag : new FormControl(tag, Validators.required)
-                      })
-                    );
-                  }
-                }
                 technologyName = this.technology.name;
                 technologyDescription = this.technology.description;
                 technologyRelevance = this.technology.relevance;
@@ -67,11 +53,9 @@ export class TechnologyEditComponent implements OnInit {
                   complexity: new FormControl(technologyComplexity, Validators.required),
                   url: new FormControl(technologyUrl, Validators.compose([Validators.required,
                     Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])),
-                  tags: technologyTags,
                 });
               });
             console.log(this.technology);
-
           } else {
             this.isNew = true;
             this.technology = null;
@@ -83,7 +67,6 @@ export class TechnologyEditComponent implements OnInit {
               complexity: new FormControl(technologyComplexity, Validators.required),
               url: new FormControl(technologyUrl, Validators.compose([Validators.required,
                 Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])),
-              tags: technologyTags,
             });
           }
         }
@@ -108,16 +91,6 @@ export class TechnologyEditComponent implements OnInit {
     if (this.technologyForm.valid) {
       const newTechnology = this.technologyForm.value;
       if (this.isNew) {
-        // convert form tags to string array TODO function for this
-        const strTags = [];
-        for (const tag of newTechnology.tags) {
-          strTags.push(tag.tag);
-        }
-        newTechnology.tags = strTags;
-        console.log(newTechnology);
-        for (const tag of strTags) {
-          this.technologyService.addTag({tag} as Tag).subscribe();
-        }
         this.technologyService.addTechnology(newTechnology)
           .subscribe(() => this.onNavigateBack());
       } else {
@@ -127,20 +100,6 @@ export class TechnologyEditComponent implements OnInit {
         this.technology.relevance = newTechnology.relevance;
         this.technology.recommendation = newTechnology.recommendation;
         this.technology.complexity = newTechnology.complexity;
-        // Convert Form Control Array to String Array
-        const strTags = [];
-        const newTags = [];
-        for (const tag of newTechnology.tags) {
-          strTags.push(tag.tag);
-          if (!this.technology.tags.includes(tag.tag)) {
-            newTags.push(tag.tag);
-          }
-        }
-        this.technology.tags = strTags;
-            // TODO remove redundant code
-        for (const tag of newTags) {
-          this.technologyService.addTag({tag} as Tag).subscribe();
-        }
         this.technologyService.editTechnology(this.technology)
           .subscribe(() => this.onNavigateBack());
       }
@@ -155,18 +114,6 @@ export class TechnologyEditComponent implements OnInit {
 
   onNavigateBack() {
     this.router.navigate(['/']);
-  }
-
-  onAddTagControl(tag: string) {
-    (this.technologyForm.get('tags') as FormArray).push(
-      new FormGroup( {
-        tag: new FormControl(tag, Validators.required)
-      }));
-    this.curTag.nativeElement.value = '';
-  }
-
-  removeTagControl(index: number) {
-    (this.technologyForm.get('tags') as FormArray).removeAt(index);
   }
 
 }
