@@ -7,14 +7,9 @@ CREATE TABLE IF NOT EXISTS technologies
     relevance      smallint CHECK (relevance > 0 AND relevance < 6),
     complexity     smallint CHECK (complexity > 0 AND complexity < 6),
     url            VARCHAR(200)  NOT NULL,
-    tags           varchar(210)
+
 );
 
-CREATE TABLE IF NOT EXISTS tags
-(
-    id  SERIAL primary key,
-    tag character varying(100) NOT NULL
-);
 
 
 

@@ -1,4 +1,5 @@
 package com.opitzconsulting.demo.micronaut.genre;
+
 import com.opitzconsulting.demo.micronaut.model.Technology;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,13 +12,13 @@ public interface TechnologyRepository {
 
     Optional<Technology> getTechnology(@NotNull int id);
 
-    Technology insertTechnology( @NotEmpty String name, String description, Integer relevance,
-                                Integer recommendation, Integer complexity, String url, List<String> tags);
+    Technology insertTechnology(@NotEmpty String name, String description, Integer relevance,
+                                Integer recommendation, Integer complexity, String url);
 
     void removeTechnology(@NotNull int id) ;
 
     int update(@NotNull Integer id, String name, String description, Integer relevance,
-               Integer recommendation, Integer complexity, String url, List<String> tags);
+               Integer recommendation, Integer complexity, String url);
 
     List<Technology> getTechnologies();
 

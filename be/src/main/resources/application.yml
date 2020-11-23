@@ -28,5 +28,5 @@ datasources:
 flyway:
   enabled: true
   schemas: public
-  locations: classpath:/db/migration
+  locations: db/migration
   baselineOnMigrate: true

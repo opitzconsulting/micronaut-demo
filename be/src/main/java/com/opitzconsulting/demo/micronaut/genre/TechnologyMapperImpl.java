@@ -1,13 +1,11 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opitzconsulting.demo.micronaut.model.Technology;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.inject.Singleton;
-import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -61,13 +59,13 @@ public class TechnologyMapperImpl implements TechnologyMapper {
 
     @Override
     public void update(Integer id, String name, String description, Integer relevance,
-                       Integer recommendation, Integer complexity, String url, List<String> tags) {
-        ObjectMapper objectMapper= new ObjectMapper();
+                       Integer recommendation, Integer complexity, String url) {
+
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             getTechnologyMapper(sqlSession).
-                    update(id, name,description,relevance,recommendation,complexity,url,objectMapper.convertValue(tags, ArrayList.class));
+                    update(id, name,description,relevance,recommendation,complexity,url);
             sqlSession.commit();
         }
-//asil o degisiskligi burda yapman lazimdi
+
     }
 }

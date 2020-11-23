@@ -44,7 +44,7 @@ public class TechnologyController {
     @Post("/technologies")
     public HttpResponse insertTechnology(@Body @Valid TechnologyInsertCommand insertCommand) {
         Technology technology1=technologyRepository.insertTechnology(insertCommand.getName(),insertCommand.getDescription(),insertCommand.getRecommendation(),
-                insertCommand.getRelevance(),insertCommand.getComplexity(), insertCommand.getUrl(), insertCommand.getTags());
+                insertCommand.getRelevance(),insertCommand.getComplexity(), insertCommand.getUrl());
         return HttpResponse
                 .created(technology1)
                 .headers(headers -> headers.location(location(technology1.getId())));
@@ -54,7 +54,7 @@ public class TechnologyController {
     public HttpResponse updateTechnology(@Body @Valid TechnologyUpdateCommand updateCommand){
 
         technologyRepository.update(updateCommand.getId(), updateCommand.getName(),updateCommand.getDescription(),updateCommand.getRecommendation(),
-                updateCommand.getRelevance(),updateCommand.getComplexity(), updateCommand.getUrl(), updateCommand.getTags());
+                updateCommand.getRelevance(),updateCommand.getComplexity(), updateCommand.getUrl());
         return HttpResponse
                 .noContent()
                 .header(HttpHeaders.LOCATION, location(updateCommand.getId()).getPath());

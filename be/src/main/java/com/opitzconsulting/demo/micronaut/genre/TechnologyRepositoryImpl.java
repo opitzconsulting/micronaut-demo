@@ -6,7 +6,6 @@ import com.opitzconsulting.demo.micronaut.model.Technology;
 import javax.inject.Singleton;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +25,8 @@ public class TechnologyRepositoryImpl implements TechnologyRepository {
     }
 
     @Override
-    public Technology insertTechnology(@NotEmpty String name, String description, Integer relevance, Integer recommendation, Integer complexity, String url,List<String> tags) {
-        ObjectMapper objectMapper= new ObjectMapper();
-        Technology technology= new Technology(name,description,relevance,recommendation,complexity,url,tags);
+    public Technology insertTechnology(@NotEmpty String name, String description, Integer relevance, Integer recommendation, Integer complexity, String url) {
+        Technology technology= new Technology(name,description,relevance,recommendation,complexity,url);
         technologyMapper.insertTechnology(technology);
         return technology;
     }
@@ -38,10 +36,10 @@ public class TechnologyRepositoryImpl implements TechnologyRepository {
         getTechnology(id).ifPresent(technology ->technologyMapper.removeTechnology(id));
     }
     @Override
-    public int update(@NotNull Integer id, String name, String description, Integer relevance, Integer recommendation, Integer complexity, String url, List<String> tags) {
+    public int update(@NotNull Integer id, String name, String description, Integer relevance, Integer recommendation, Integer complexity, String url) {
         ObjectMapper objectMapper= new ObjectMapper();
-        Technology technology= new Technology(id,name,description,relevance,recommendation,complexity,url,tags);
-        technologyMapper.update(id, name, description, relevance, recommendation, complexity, url, objectMapper.convertValue(tags, ArrayList.class));
+        Technology technology= new Technology(id,name,description,relevance,recommendation,complexity,url);
+        technologyMapper.update(id, name, description, relevance, recommendation, complexity, url);
         return -1;
     }
 

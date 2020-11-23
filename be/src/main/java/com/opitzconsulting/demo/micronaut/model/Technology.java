@@ -2,8 +2,6 @@ package com.opitzconsulting.demo.micronaut.model;
 
 import io.micronaut.core.annotation.Introspected;
 
-import java.util.List;
-
 //Domain
 @Introspected
 public class Technology {
@@ -22,21 +20,20 @@ public class Technology {
 
     private String url;
 
-    //string array machen !! als String List zurückgeben
-    private List<String> tags;
+    public Technology() {
+    }
 
-
-    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, List<String> tags){
+    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url){
         this.name = name;
         this.description = description;
         this.recommendation = recommendation;
         this.relevance = relevance;
         this.complexity = complexity;
         this.url = url;
-        this.tags = tags;
+
     }
 
-    public Technology(Integer id, String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url, List<String> tags) {
+    public Technology(Integer id, String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url) {
         super();
         this.id = id;
         this.name = name;
@@ -45,7 +42,7 @@ public class Technology {
         this.relevance = relevance;
         this.complexity = complexity;
         this.url = url;
-        this.tags = tags;
+
     }
 
 
@@ -105,13 +102,6 @@ public class Technology {
         this.url = url;
     }
 
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
 
     @Override
     public String toString() {
@@ -122,8 +112,7 @@ public class Technology {
                 ", recommendation=" +recommendation+
                 ", relevance=" + relevance +
                 ", complexity=" + complexity +
-                ", url=" + url +
-                ", tags=" + tags +'}';
+                ", url=" + url + '}';
     }
 
 

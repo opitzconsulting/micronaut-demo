@@ -18,8 +18,8 @@ public interface TechnologyMapper {
 
 
     //insert new one
-    @Insert("INSERT INTO technologies (name, description, recommendation, relevance, complexity, url, tags) values(#{name}," +
-            "#{description},#{recommendation},#{relevance},#{complexity},#{url},#{tags})")
+    @Insert("INSERT INTO technologies (name, description, recommendation, relevance, complexity, url) values(#{name}," +
+            "#{description},#{recommendation},#{relevance},#{complexity},#{url})")
     void insertTechnology(Technology technology) ;
 
     //delete where id = id
@@ -29,10 +29,10 @@ public interface TechnologyMapper {
 
     //update where id = id
     @Update("UPDATE technologies SET name=#{name}, description=#{description}, recommendation=#{recommendation}, " +
-            "relevance=#{relevance}, complexity=#{complexity}, url=#{url}, tags=#{tags} WHERE id=#{id}")
+            "relevance=#{relevance}, complexity=#{complexity}, url=#{url}")
     void update(@Param("id") Integer id, @Param("name") String name, @Param("description") String description,
                 @Param("relevance") Integer relevance, @Param("recommendation")Integer recommendation,
-                @Param("complexity")Integer complexity, @Param("url") String url,@Param("tags") List<String> tags);
+                @Param("complexity")Integer complexity, @Param("url") String url);
 
 
 }

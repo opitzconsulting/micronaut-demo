@@ -1,12 +1,9 @@
 package com.opitzconsulting.demo.micronaut.genre;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Introspected
 public class TechnologyUpdateCommand {
@@ -25,13 +22,12 @@ public class TechnologyUpdateCommand {
 
     private String url;
 
-    private List<String> tags;
 
     public TechnologyUpdateCommand() {
     }
 
     public TechnologyUpdateCommand(@NotNull Integer id, String name, String description,
-                                   Integer relevance, Integer recommendation, Integer complexity, String url, List<String> tags) {
+                                   Integer relevance, Integer recommendation, Integer complexity, String url) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,7 +35,7 @@ public class TechnologyUpdateCommand {
         this.recommendation = recommendation;
         this.complexity = complexity;
         this.url = url;
-        this.tags = tags;
+
     }
 
     public Integer getId() {
@@ -98,12 +94,5 @@ public class TechnologyUpdateCommand {
         this.url = url;
     }
 
-    public List<String> getTags() {
-        return tags;
-    }
 
-    public void setTags(List<String> tags) {
-        ObjectMapper objectMapper=new ObjectMapper();
-        tags=objectMapper.convertValue(tags, ArrayList.class);
-    }
 }
