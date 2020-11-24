@@ -5,8 +5,6 @@ import com.opitzconsulting.demo.micronaut.genre.TechnologyInsertCommand;
 import com.opitzconsulting.demo.micronaut.genre.TechnologyRepository;
 import com.opitzconsulting.demo.micronaut.genre.TechnologyUpdateCommand;
 import com.opitzconsulting.demo.micronaut.model.Technology;
-import io.micronaut.http.HttpHeaders;
-import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 
@@ -42,22 +40,18 @@ public class TechnologyController {
     }
 
     @Post("/technologies")
-    public HttpResponse insertTechnology(@Body @Valid TechnologyInsertCommand insertCommand) {
+    public void insertTechnology(@Body @Valid TechnologyInsertCommand insertCommand) {
         Technology technology1=technologyRepository.insertTechnology(insertCommand.getName(),insertCommand.getDescription(),insertCommand.getRecommendation(),
                 insertCommand.getRelevance(),insertCommand.getComplexity(), insertCommand.getUrl());
-        return HttpResponse
-                .created(technology1)
-                .headers(headers -> headers.location(location(technology1.getId())));
+
     }
 
     @Put("/technologies")
-    public HttpResponse updateTechnology(@Body @Valid TechnologyUpdateCommand updateCommand){
+    public void updateTechnology(@Body @Valid TechnologyUpdateCommand updateCommand){
 
         technologyRepository.update(updateCommand.getId(), updateCommand.getName(),updateCommand.getDescription(),updateCommand.getRecommendation(),
                 updateCommand.getRelevance(),updateCommand.getComplexity(), updateCommand.getUrl());
-        return HttpResponse
-                .noContent()
-                .header(HttpHeaders.LOCATION, location(updateCommand.getId()).getPath());
+
     }
 
     @Delete("/technologies/{id}")
