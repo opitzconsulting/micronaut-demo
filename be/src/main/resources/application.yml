@@ -28,7 +28,6 @@ datasources:
 flyway:
   datasources:
     default:
-    enabled: true
-    schemas: public
-    locations: classpath:/db/migration
+    locations: classpath:databasemigrations
     baselineOnMigrate: true
+

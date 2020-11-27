@@ -3,6 +3,8 @@ FROM openjdk:11-jdk-slim as builder
 RUN mkdir /build
 COPY . /build
 WORKDIR /build
+#use the following line under windows as "CMD ./gradlew --no-daemon assemble"
+#under linux operating system as "RUN ./gradlew --no-daemon assemble"
 RUN ./gradlew --no-daemon assemble
 
 FROM openjdk:11-jdk-slim
