@@ -26,7 +26,9 @@ datasources:
 
 
 flyway:
-  enabled: true
-  schemas: public
-  locations: db/migration
-  baselineOnMigrate: true
+  datasources:
+    default:
+    enabled: true
+    schemas: public
+    locations: classpath:/db/migration
+    baselineOnMigrate: true
