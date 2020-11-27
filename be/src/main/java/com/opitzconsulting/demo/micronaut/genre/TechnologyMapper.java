@@ -29,7 +29,7 @@ public interface TechnologyMapper {
 
     //update where id = id
     @Update("UPDATE technologies SET name=#{name}, description=#{description}, recommendation=#{recommendation}, " +
-            "relevance=#{relevance}, complexity=#{complexity}, url=#{url}")
+            "relevance=#{relevance}, complexity=#{complexity}, url=#{url} WHERE id=#{id}")
     void update(@Param("id") Integer id, @Param("name") String name, @Param("description") String description,
                 @Param("relevance") Integer relevance, @Param("recommendation")Integer recommendation,
                 @Param("complexity")Integer complexity, @Param("url") String url);

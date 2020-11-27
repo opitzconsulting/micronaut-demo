@@ -27,7 +27,6 @@ datasources:
 
 flyway:
   datasources:
-    default:
-    locations: classpath:databasemigrations
+    locations: classpath:/databasemigrations
     baselineOnMigrate: true
 
