@@ -18,5 +18,6 @@
 # Shell scripts require LF
 *.sh    text eol=lf
 gradlew    text eol=lf
+wait_for    text eol=lf
 # Batch scripts require CRLF
 *.bat   text eol=crlf
