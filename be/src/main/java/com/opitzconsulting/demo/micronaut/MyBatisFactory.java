@@ -15,10 +15,11 @@ import javax.sql.DataSource;
 @Factory
 public class MyBatisFactory {
 
-    private  DataSource dataSource ;
+    private DataSource dataSource;
 
     public MyBatisFactory(DataSource dataSource) {
-        this.dataSource=dataSource;}
+        this.dataSource = dataSource;
+    }
 
 
     @Bean

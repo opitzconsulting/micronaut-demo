@@ -26,6 +26,7 @@ public class TechnologyMapperImpl implements TechnologyMapper {
 
 
     }
+
     private TechnologyMapper getTechnologyMapper(SqlSession sqlSession) {
         return sqlSession.getMapper(TechnologyMapper.class);
     }
@@ -46,7 +47,7 @@ public class TechnologyMapperImpl implements TechnologyMapper {
             //in a database write the access,commit the transaction
             sqlSession.commit();
         }
-        // return HttpResponse.registerNatives (HttpStatus.CREATED).body("success:neue Technologie wurde gespeichert");
+
     }
 
     @Override
@@ -63,7 +64,7 @@ public class TechnologyMapperImpl implements TechnologyMapper {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             getTechnologyMapper(sqlSession).
-                    update(id, name,description,relevance,recommendation,complexity,url);
+                    update(id, name, description, relevance, recommendation, complexity, url);
             sqlSession.commit();
         }
 

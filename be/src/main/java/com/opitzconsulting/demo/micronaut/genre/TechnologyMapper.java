@@ -14,13 +14,13 @@ public interface TechnologyMapper {
 
     //returns the technology where id=id
     @Select("SELECT * FROM technologies WHERE id=#{id}")
-    Technology getTechnology(int id) ;
+    Technology getTechnology(int id);
 
 
     //insert new one
     @Insert("INSERT INTO technologies (name, description, recommendation, relevance, complexity, url) values(#{name}," +
             "#{description},#{recommendation},#{relevance},#{complexity},#{url})")
-    void insertTechnology(Technology technology) ;
+    void insertTechnology(Technology technology);
 
     //delete where id = id
     @Delete("DELETE FROM technologies WHERE id=#{id}")
@@ -31,8 +31,8 @@ public interface TechnologyMapper {
     @Update("UPDATE technologies SET name=#{name}, description=#{description}, recommendation=#{recommendation}, " +
             "relevance=#{relevance}, complexity=#{complexity}, url=#{url} WHERE id=#{id}")
     void update(@Param("id") Integer id, @Param("name") String name, @Param("description") String description,
-                @Param("relevance") Integer relevance, @Param("recommendation")Integer recommendation,
-                @Param("complexity")Integer complexity, @Param("url") String url);
+                @Param("relevance") Integer relevance, @Param("recommendation") Integer recommendation,
+                @Param("complexity") Integer complexity, @Param("url") String url);
 
 
 }

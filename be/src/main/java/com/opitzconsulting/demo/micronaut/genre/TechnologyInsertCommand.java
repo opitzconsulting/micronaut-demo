@@ -6,20 +6,20 @@ import io.micronaut.core.annotation.Introspected;
 @Introspected
 public class TechnologyInsertCommand {
 
-    private  String name;
+    private String name;
 
     private String description;
 
-    private Integer relevance ;
+    private Integer relevance;
 
-    private Integer recommendation ;
+    private Integer recommendation;
 
     private Integer complexity;
 
     private String url;
 
 
-    public TechnologyInsertCommand(){
+    public TechnologyInsertCommand() {
     }
 
     public TechnologyInsertCommand(String name, String description, Integer relevance,
@@ -32,7 +32,6 @@ public class TechnologyInsertCommand {
         this.url = url;
 
     }
-
 
 
     public String getName() {
@@ -82,8 +81,6 @@ public class TechnologyInsertCommand {
     public void setUrl(String url) {
         this.url = url;
     }
-
-
 
 
 }

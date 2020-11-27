@@ -8,13 +8,13 @@ public class Technology {
 
     private Integer id;
 
-    private  String name;
+    private String name;
 
     private String description;
 
-    private Integer relevance ;
+    private Integer relevance;
 
-    private Integer recommendation ;
+    private Integer recommendation;
 
     private Integer complexity;
 
@@ -23,7 +23,7 @@ public class Technology {
     public Technology() {
     }
 
-    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url){
+    public Technology(String name, String description, Integer recommendation, Integer relevance, Integer complexity, String url) {
         this.name = name;
         this.description = description;
         this.recommendation = recommendation;
@@ -54,7 +54,7 @@ public class Technology {
         this.id = id;
     }
 
-    public  String getName() {
+    public String getName() {
         return name;
     }
 
@@ -109,12 +109,11 @@ public class Technology {
                 "id=" + id +
                 ", name='" + name +
                 ", description=" + description +
-                ", recommendation=" +recommendation+
+                ", recommendation=" + recommendation +
                 ", relevance=" + relevance +
                 ", complexity=" + complexity +
                 ", url=" + url + '}';
     }
-
 
 
 }

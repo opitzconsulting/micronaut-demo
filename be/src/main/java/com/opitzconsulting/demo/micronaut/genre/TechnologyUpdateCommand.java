@@ -10,13 +10,13 @@ public class TechnologyUpdateCommand {
     @NotNull
     private Integer id;
 
-    private  String name;
+    private String name;
 
     private String description;
 
-    private Integer relevance ;
+    private Integer relevance;
 
-    private Integer recommendation ;
+    private Integer recommendation;
 
     private Integer complexity;
 

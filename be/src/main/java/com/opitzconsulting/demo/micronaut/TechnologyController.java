@@ -41,16 +41,16 @@ public class TechnologyController {
 
     @Post("/technologies")
     public void insertTechnology(@Body @Valid TechnologyInsertCommand insertCommand) {
-        Technology technology1=technologyRepository.insertTechnology(insertCommand.getName(),insertCommand.getDescription(),insertCommand.getRecommendation(),
-                insertCommand.getRelevance(),insertCommand.getComplexity(), insertCommand.getUrl());
+        Technology technology1 = technologyRepository.insertTechnology(insertCommand.getName(), insertCommand.getDescription(), insertCommand.getRecommendation(),
+                insertCommand.getRelevance(), insertCommand.getComplexity(), insertCommand.getUrl());
 
     }
 
     @Put("/technologies")
-    public void updateTechnology(@Body @Valid TechnologyUpdateCommand updateCommand){
+    public void updateTechnology(@Body @Valid TechnologyUpdateCommand updateCommand) {
 
-        technologyRepository.update(updateCommand.getId(), updateCommand.getName(),updateCommand.getDescription(),updateCommand.getRecommendation(),
-                updateCommand.getRelevance(),updateCommand.getComplexity(), updateCommand.getUrl());
+        technologyRepository.update(updateCommand.getId(), updateCommand.getName(), updateCommand.getDescription(), updateCommand.getRecommendation(),
+                updateCommand.getRelevance(), updateCommand.getComplexity(), updateCommand.getUrl());
 
     }
 

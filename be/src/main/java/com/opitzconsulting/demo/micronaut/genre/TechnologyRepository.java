@@ -15,7 +15,7 @@ public interface TechnologyRepository {
     Technology insertTechnology(@NotEmpty String name, String description, Integer relevance,
                                 Integer recommendation, Integer complexity, String url);
 
-    void removeTechnology(@NotNull int id) ;
+    void removeTechnology(@NotNull int id);
 
     int update(@NotNull Integer id, String name, String description, Integer relevance,
                Integer recommendation, Integer complexity, String url);
